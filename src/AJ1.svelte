@@ -10,6 +10,6 @@ import {trocarEstadoDoJogo} from './CEstado'
       <!--aqui pode colocar alguma coisa sobre--> 
 </body>
 <div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('jogar cruzada 1')}">
-	fechar
+	Fechar
 </div>
 <Jogo1/>

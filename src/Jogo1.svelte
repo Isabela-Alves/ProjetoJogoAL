@@ -71,6 +71,6 @@ console.log(coluna)
 
 	<VoltarMenu/>
 	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo1')}">
-	ajuda
+	Ajuda
 	</div>
 	</body>
