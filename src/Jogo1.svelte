@@ -27,6 +27,12 @@ let labi = [
   let gameEnd = false;
   let bombas = [];
 
+  //PowerUp imunidade
+
+  let imunidade = false;
+  let imuniTempo = 0;
+  const imuniDura = 5;
+
   let timer = 0; //Variavel do tempirizador
   let timerIntervalo;
 
@@ -34,6 +40,12 @@ let labi = [
   function startTimer() {
     timerIntervalo = setInterval(() => {
       timer++;
+      if (imunidade) {
+        imuniTempo--;
+        if (imuniTempo <= 0) {
+          imunidade = false; //Vai desativar ela quando o tempo acabar
+        }
+      }
     }, 1000 );
   }
 
@@ -83,9 +95,15 @@ let labi = [
   function checaColisaion() {
     for (const bomba of bombas) {
       if (bomba.x === playerX && bomba.y === playerY){
-        gameEnd = true;
-        stopTimer();
-        alert('Você explodiu e perdeu!\nTempo decorrido: ' + timer + ' segundos')
+        if (!imunidade) {
+          gameEnd = true;
+          stopTimer();
+          alert('Você explodiu e perdeu!\nTempo decorrido: ' + timer + ' segundos')
+        } else {
+          //Se o jogador tiver imunidade ela vai ser removida da lista de bombas
+          bombas.splice(bombas.indexOf(bomba), 1);
+          labi[bomba.y][bomba.x] = 1;
+        }
       }
     }
   }
@@ -116,7 +134,19 @@ let labi = [
     } else {
       checaColisaion();
     }
+
+    if(labi[playerY][playerX] === 'powerup') {
+    //Se ele pegar o powerup vai ativar aimunidade, 
+    // Depois definir o tempo restante
+    //Depois remove o up do map, pra não ser pego de novo
+    imunidade = true;
+    imuniTempo = imuniDura;
+    labi[playerY][playerX] = 1;
+   }
+
   }
+
+  
 
 </script>
 <body>
@@ -145,6 +175,7 @@ let labi = [
     </div>
   </div>
   <p> Tempo: {timer}</p>
+  <p>PowerUp: {imuniTempo} </p>
   <VoltarMenu/>
 	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo2')}">
 	Ajuda
