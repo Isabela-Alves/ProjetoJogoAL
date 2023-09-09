@@ -193,7 +193,7 @@ button {
   }
 
   .cell.powerup {
-    background-color: #00f; /* Azul para o campo de força */
+    background-color: rgb(99, 99, 210); /* Azul para o campo de força */
     color: #fff; /* Cor do texto das células de campo de força */
   }
 

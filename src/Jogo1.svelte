@@ -49,13 +49,35 @@ let labi = [
       do {
         x = Math.floor((Math.random()*10));
         y = Math.floor((Math.random()*10));
-      } while (labi[x][y] !== 1 && labi[y][x] !== 'S' && labi[y][x] !== 'E' && bombas.some(bomba => bomba.x === x && bomba.y === y));
+      } while (labi[x][y] !== 1 && 
+        labi[y][x] !== 'S' && 
+        labi[y][x] !== 'E' && 
+        bombas.some(bomba => bomba.x === x && bomba.y === y));
       bombas.push({ x, y});
 
       //Essa é a definiçao pra dar um estilo a mais
       labi[y][x] = 'bomba';
     }
   }
+
+  // geração de powerup 
+  function gerarPowerUp () {
+  let powerupPosi = null; 
+//Verifiva se ele foi gerado no mapa, se não ele gera gera gera bacteria
+  if (!powerupPosi) {
+
+    do {
+     powerupPosi = { x: Math.floor(Math.random() * 10), y: Math.floor(Math.random() * 10)};
+    } while (
+     labi[powerupPosi.y][powerupPosi.x] !== 1 &&
+     labi[powerupPosi.y][powerupPosi.x] !== "S" &&
+     labi[powerupPosi.y][powerupPosi.x]!== 'E' &&
+     bombas.some(bomba => bomba.x === powerupPosi.x && bomba.y === powerupPosi.y)
+    );
+   labi[powerupPosi.y][powerupPosi.x] = 'powerup';
+  
+  }
+}
 
   //Tcheca as colisões com as bombas
   function checaColisaion() {
@@ -74,6 +96,7 @@ let labi = [
     if (!timerIntervalo) {
       startTimer(); //Começa o o jogador der o primeiro passo
       geraBombas();
+      gerarPowerUp();  
     }
 
     if (event.key === "ArrowRight" && playerX < labi[0].length - 1 && labi[playerY][playerX + 1] !== 0) {
@@ -114,7 +137,8 @@ let labi = [
            class:end={cell === 'E'} 
            class:wall={cell === 0} 
            class:player={x === playerX && y === playerY}
-           class:bomba={cell === 'bomba'}>
+           class:bomba={cell === 'bomba'}
+           class:powerup={cell === 'powerup'}>
           </div>
         {/each}
       {/each}
