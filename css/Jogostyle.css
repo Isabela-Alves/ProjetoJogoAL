@@ -139,3 +139,73 @@ nav{
     color:var(--cor-primaria-enviar);
     background-color: var(--cor-secundaria-enviar);
 }
+
+/* Css das tabelinhas e outras coisa se der certo*/
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  /* Estilos do labirinto */
+  .maze {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 300px;
+    gap: 2px;
+    margin-top: 20px;
+  }
+
+
+  .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #71118e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .cell.start {
+    background-color: #0f0; /* Verde para o ponto de início */
+  }
+
+  .cell.end {
+    background-color: rgb(170, 228, 187); /* Vermelho para o ponto final */
+  }
+
+  .cell.wall {
+    background-color: #000; /* Preto para as paredes */
+  }
+
+  .cell.powerup {
+    background-color: #00f; /* Azul para o campo de força */
+    color: #fff; /* Cor do texto das células de campo de força */
+  }
+
+  .cell.bomba {
+    background-color: #f00; /* Vermelho para as bombas */
+  }
+
+  .cell.player {
+    background-color: #ff0; /* Amarelo para o jogador */
+  }
+
+  /* Estilos de fim de jogo */
+  .game-over {
+    margin-top: 20px;
+  }
