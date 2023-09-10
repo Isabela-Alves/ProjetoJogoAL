@@ -1,5 +1,5 @@
 <svelte:head>
-	<link rel="stylesheet" href="/css/Jogostyle.css">
+	<link rel="stylesheet" href="/css/Jogo1.css">
 </svelte:head>
 
 <script>
@@ -152,21 +152,6 @@ let labi = [
 
   }
 
-  //Limpa as bombas e os powerup do map
-
-  function limpaBombasUp() {
-    for (let y = 0; y < labi.length; y++) {
-      for (let x = 0; x < labi[y].length ; x++){
-        if((labi[y][x]) === 'bomba' && labi[y][x] === 'powerup' ){
-          labi[y][x] = 1;
-        }
-      }
-    }
-  }
-
- 
-
-  
 
 </script>
 <body>

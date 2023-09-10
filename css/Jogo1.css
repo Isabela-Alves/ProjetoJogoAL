@@ -3,38 +3,7 @@ background: rgb(255, 255, 255);
 margin: 0%;
 }
 
-input {
-	max-width: 3em;
-	max-height: 3em;
-	font-size: 13px;
-	text-transform: uppercase;
-}
-td {
-	max-width: 6em;
-	max-height: 6em;
-	font-size: 13px;
-}
-th{
-    max-width: 3em;
-	max-height: 3em;
-    font-family: 'Dimitri',Times ;
-    color: white;
-    font-size: 30px;
-}
-tr {
-	max-width: 3em;
-	max-height: 3em;
-    font-family: 'Dimitri',Times ;
-    color: white;
-    font-size: 30px;
 
-}
-/* id para quadradinhos vazios*/
-#vazio {
-	max-width: 38px;
-	max-height: 38px;
-	gap: flex 5px;
-}
 
 
 
@@ -219,5 +188,5 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
   }
