@@ -3,6 +3,7 @@
 </svelte:head>
 
 <script>
+let count = 0; //vai ser pra contagem
 
 import {Contagem} from './Logica.js'
 import VoltarMenu from './CVoltarMenu.svelte'
@@ -10,21 +11,21 @@ import { estado } from "./CEstado.js"
 import { trocarEstadoDoJogo } from './CEstado.js'
 
 let labi = [
-    ['S', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,'E'],
-    [1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1],
-    [1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [ 'S', 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 'E'],
+[ 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
+[ 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
+[ 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1],
+[ 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1],
+[ 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+[ 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1],
+[ 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1],
+[ 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+[ 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0],
+[ 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+[ 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+[ 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+[ 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+[ 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1]
   ];
 
   let playerX = 0;
@@ -38,7 +39,7 @@ let labi = [
 
   let imunidade = false;
   let imuniTempo = 0;
-  const imuniDura = 5;
+  const imuniDura = 10;
 
   let timer = 0; //Variavel do tempirizador
   let timerIntervalo;
@@ -137,11 +138,14 @@ let labi = [
     } else if (event.key === "ArrowUp" && playerY > 0 && labi[playerY - 1][playerX] !== 0) {
       playerY--;
     }
+    if(labi[playerY][playerX] === 1) {
+      count++;
+    }
 
     if (labi[playerY][playerX] === 'E') {
       gameEnd = true;
       stopTimer();
-      alert('Você chegou ao final do labirinto!\nTempo decorrido: ' + timer + ' segundos');
+      alert('Você chegou ao final do labirinto!\nTempo decorrido: ' + timer + ' segundos' + ' \nVidas no final: ' + vidas + ' Vida(s) ' + ' \nEspaços Percorridos: ' + count + ' Espaços ');
     } else {
       checaColisaion();
     }
@@ -189,6 +193,7 @@ let labi = [
   <p> Tempo: {timer}</p>
   <p>PowerUp: {imuniTempo} </p>
   <p>Vidas: {vidas}</p>
+  <p>Espaços Percorridos: {count}</p>
 </div>
 
 
