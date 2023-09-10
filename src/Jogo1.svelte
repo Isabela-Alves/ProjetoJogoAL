@@ -3,6 +3,7 @@
 </svelte:head>
 
 <script>
+let count = 0; //vai ser pra contagem
 
 import VoltarMenu from './CVoltarMenu.svelte'
 import { estado } from "./CEstado.js"
@@ -33,19 +34,19 @@ let labi = [
 
   let imunidade = false;
   let imuniTempo = 0;
-  const imuniDura = 5;
+  const imuniDura = 10;
 
   let timer = 0; //Variavel do tempirizador
   let timerIntervalo;
 
-//Começa a rodar de pois incrementa
+//Começa a rodar depois incrementa
   function startTimer() {
     timerIntervalo = setInterval(() => {
       timer++;
       if (imunidade) {
         imuniTempo--;
-        if (imuniTempo <= 0) {
-          imunidade = false; //Vai desativar ela quando o tempo acabar
+        if (imuniTempo <= 0) {  //a imunidade expira quando chegar em 0
+          imunidade = false; //Vai desativar ela quando o tempo acabar 
         }
       }
     }, 1000 );
@@ -77,7 +78,7 @@ let labi = [
   // geração de powerup 
   function gerarPowerUp () {
   let powerupPosi = null; 
-//Verifiva se ele foi gerado no mapa, se não ele gera gera gera bacteria
+//Verifiva se ele foi gerado no mapa, se não ele gera gera gera bacteria 
   if (!powerupPosi) {
 
     do {
@@ -88,18 +89,18 @@ let labi = [
      labi[powerupPosi.y][powerupPosi.x]!== 'E' &&
      bombas.some(bomba => bomba.x === powerupPosi.x && bomba.y === powerupPosi.y)
     );
-   labi[powerupPosi.y][powerupPosi.x] = 'powerup';
+   labi[powerupPosi.y][powerupPosi.x] = 'powerup'; //aqui da um estilo visual especifico para indicar onde o powerup esta
   
   }
 }
 
-  //Tcheca as colisões com as bombas
+  //Checa as colisões com as bombas
   function checaColisaion() {
     for (const bomba of bombas) {
-      if (bomba.x === playerX && bomba.y === playerY){
-        if (!imunidade) {
-          vidas--;
-          if (vidas === 0) {
+      if (bomba.x === playerX && bomba.y === playerY){  //se houver colisão:
+        if (!imunidade) {  //verificar se ele tem a imunidade
+          vidas--;  //se nao tiver ,decrementa 1 vida
+          if (vidas === 0) { //se estiver sem vidas eh fim de jogo
           gameEnd = true;
           stopTimer();
           alert('Você perdeu todas as vidas!\nTempo decorrido: ' + timer + ' segundos')
@@ -117,8 +118,8 @@ let labi = [
   function movePlayer(event) {
     if (gameEnd) return; //Ve se o jogo teminou
 
-    if (!timerIntervalo) {
-      startTimer(); //Começa o o jogador der o primeiro passo
+    if (!timerIntervalo) { //o que aparece na tela
+      startTimer(); //Começa quando o jogador der o primeiro passo
       geraBombas();
       gerarPowerUp();  
     }
@@ -132,11 +133,15 @@ let labi = [
     } else if (event.key === "ArrowUp" && playerY > 0 && labi[playerY - 1][playerX] !== 0) {
       playerY--;
     }
+    
+    if(labi[playerY][playerX] === 1) {
+      count++;
+    }
 
     if (labi[playerY][playerX] === 'E') {
       gameEnd = true;
       stopTimer();
-      alert('Você chegou ao final do labirinto!\nTempo decorrido: ' + timer + ' segundos');
+      alert('Você chegou ao final do labirinto!\nTempo decorrido: ' + timer + ' segundos' + ' \nVidas no final: ' + vidas + ' Vida(s) ' + ' \nEspaços Percorridos: ' + count + ' Espaços ');
     } else {
       checaColisaion();
     }
@@ -158,7 +163,7 @@ let labi = [
 
   <nav id="linha">
     <h2>
-      Campo Minado Nível 2
+      Campo Minado Nível 1
     </h2>
   </nav>
 
@@ -183,10 +188,11 @@ let labi = [
   <p> Tempo: {timer}</p>
   <p>PowerUp: {imuniTempo} </p>
   <p>Vidas: {vidas}</p>
+  <p>Espaços Percorridos: {count}</p>
 </div>
 
   <VoltarMenu/>
-	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo2')}">
+	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo1')}">
 	Ajuda
 	</div>
 
