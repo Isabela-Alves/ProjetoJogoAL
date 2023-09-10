@@ -26,6 +26,7 @@ let labi = [
   let playerY = 0;
   let gameEnd = false;
   let bombas = [];
+  let vidas = 3;
 
   //PowerUp imunidade
 
@@ -96,13 +97,17 @@ let labi = [
     for (const bomba of bombas) {
       if (bomba.x === playerX && bomba.y === playerY){
         if (!imunidade) {
+          vidas--;
+          if (vidas === 0) {
           gameEnd = true;
           stopTimer();
-          alert('Você explodiu e perdeu!\nTempo decorrido: ' + timer + ' segundos')
-        } else {
-          //Se o jogador tiver imunidade ela vai ser removida da lista de bombas
+          alert('Você perdeu todas as vidas!\nTempo decorrido: ' + timer + ' segundos')
+          } else {
+            alert('Você acertou uma bomba!\nVidas restantes: ' + vidas);
+             //Se o jogador passar por ela e perder vida ela vai ser removida da lista de bombas
           bombas.splice(bombas.indexOf(bomba), 1);
           labi[bomba.y][bomba.x] = 1;
+          }
         }
       }
     }
@@ -176,6 +181,7 @@ let labi = [
   </div>
   <p> Tempo: {timer}</p>
   <p>PowerUp: {imuniTempo} </p>
+  <p>Vidas: {vidas}</p>
   <VoltarMenu/>
 	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo2')}">
 	Ajuda
