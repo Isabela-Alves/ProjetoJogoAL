@@ -28,6 +28,7 @@ let labi = [
   let bombas = [];
   let vidas = 3;
 
+
   //PowerUp imunidade
 
   let imunidade = false;
@@ -151,6 +152,20 @@ let labi = [
 
   }
 
+  //Limpa as bombas e os powerup do map
+
+  function limpaBombasUp() {
+    for (let y = 0; y < labi.length; y++) {
+      for (let x = 0; x < labi[y].length ; x++){
+        if((labi[y][x]) === 'bomba' && labi[y][x] === 'powerup' ){
+          labi[y][x] = 1;
+        }
+      }
+    }
+  }
+
+ 
+
   
 
 </script>
@@ -163,7 +178,7 @@ let labi = [
   </nav>
 
   
-  <div on:keydown={movePlayer} tabindex="0">
+  <div on:keydown={movePlayer} tabindex="0" class="game-contens">
     <div class="maze">
       {#each labi as row, y}
         {#each row as cell, x}
@@ -179,9 +194,12 @@ let labi = [
       {/each}
     </div>
   </div>
+  <div class="info-elementos">
   <p> Tempo: {timer}</p>
   <p>PowerUp: {imuniTempo} </p>
   <p>Vidas: {vidas}</p>
+</div>
+
   <VoltarMenu/>
 	<div id="ajuda" class='menu' on:click="{() => trocarEstadoDoJogo('ajuda jogo2')}">
 	Ajuda
