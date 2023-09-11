@@ -4,7 +4,9 @@ body{
     }
     
     
-    
+    p {
+      font-size: 20px;
+    }
     
     
         
@@ -196,7 +198,7 @@ body{
       .info-elementos {
         background-color: greenyellow;
         width: 200px;
-        height: 130px;
+        height: 160px;
         text-align: center;
         border-radius: 20px;
         

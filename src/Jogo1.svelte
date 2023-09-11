@@ -3,7 +3,6 @@
 </svelte:head>
 
 <script>
-let count = 0; //vai ser pra contagem
 
 import VoltarMenu from './CVoltarMenu.svelte'
 import { estado } from "./CEstado.js"
@@ -11,16 +10,16 @@ import { trocarEstadoDoJogo } from './CEstado.js'
 
 
 let labi = [
-    ['S', 1, 1, 1, 1, 1, 1, 1, 1, 'E'],
-    [1, 0, 1, 0, 0, 0, 0, 0, 1, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 1, 0, 1],
-    [1, 1, 1, 1, 1, 0, 1, 0, 0, 1],
-    [1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
-    [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
-    [1, 1, 1, 0, 0, 0, 0, 1, 0, 1],
+    ['S', 1, 1, 1, 1, 1, 0, 1, 1, 0],
+    [1, 0, 0, 1, 0, 1, 1, 0, 1, 0],
+    [1, 1, 1, 1, 0, 1, 0, 1, 1, 1],
+    [0, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 1, 0, 1, 0, 0],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [0, 0, 0, 1, 1, 0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 0, 0, 1, 1, 1, 'E'],
   ];
 
   let playerX = 0;
@@ -28,6 +27,7 @@ let labi = [
   let gameEnd = false;
   let bombas = [];
   let vidas = 3;
+  let count = 0; //vai ser pra contagem
 
 
   //PowerUp imunidade
