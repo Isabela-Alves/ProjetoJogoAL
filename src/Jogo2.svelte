@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script>
-let count = 0; //vai ser pra contagem
+
 
 import {Contagem} from './Logica.js'
 import VoltarMenu from './CVoltarMenu.svelte'
@@ -24,7 +24,7 @@ let labi = [
 [ 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 [ 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1],
 [ 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
-[ 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1],
+[ 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, , 1, 1, 1],
 [ 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 'E']
   ];
 
@@ -33,7 +33,7 @@ let labi = [
   let gameEnd = false;
   let bombas = [];
   let vidas = 3;
-
+  let count = 0; //vai ser pra contagem
 
   //PowerUp imunidade
 
