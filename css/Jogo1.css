@@ -151,28 +151,46 @@ button {
   }
 
   .cell.start {
-    background-color: #0f0; /* Verde para o ponto de início */
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://image.freepik.com/icones-gratis/longo-seta-apontando-para-a-direita_318-41942.jpg');
   }
 
   .cell.end {
-    background-color: rgb(170, 228, 187); /* Vermelho para o ponto final */
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://image.freepik.com/icones-gratis/longo-seta-apontando-para-a-direita_318-41942.jpg');
   }
 
   .cell.wall {
-    background-color: #000; /* Preto para as paredes */
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/533/808/large_2x/abstract-background-of-brown-brick-wall-vector-design.jpg');
   }
 
   .cell.powerup {
-    background-color: rgb(99, 99, 210); /* Azul para o campo de força */
-    color: #fff; /* Cor do texto das células de campo de força */
+   background-image: url('https://thumbs.dreamstime.com/b/bola-de-vidro-azul-ou-p%C3%A9rolas-preciosas-ilustra%C3%A7%C3%A3o-do-vetor-abstrato-d-da-esfera-realista-brilhante-destacada-em-fundo-branco-197612945.jpg');
+   background-size: cover;
+   width: 30px;
+   height: 30px;
   }
 
   .cell.bomba {
-    background-color: #f00; /* Vermelho para as bombas */
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background-size: cover;
+    background-image: url('https://www.nicepng.com/png/detail/297-2978017_bomba-icono-vectorial-gratis-diseado-por-freepik-free.png');
   }
 
   .cell.player {
-    background-color: #ff0; /* Amarelo para o jogador */
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url('https://tegakisozai.com/wp-content/uploads/2019/05/kuruma-400x400.png');
   }
 
   .info-elementos {
